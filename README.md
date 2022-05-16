@@ -5,6 +5,8 @@
 - It runs faster (x10~x100) than CASA `tclean` and does not require masking (i.e., clean-boxing).
 - It is slower than CASA `feather` but the fidelity is much better.
 
+Jointly imaging ALMA+ACA (no TP) may be considered the most useful part of this procedure as there are many other procedures for combining TP after we obtain the ALMA+ACA map, for example, the Python based [J-comb code](https://github.com/SihanJiao/J-comb).
+
 
 
 ## Examples of images created with this procedure
@@ -20,7 +22,7 @@ This is the ALMA+ACA+TP mosaic of CO 2-1 observations towards Lupus MM3 (present
 ## Acknowledgement (and History)
 This procedure was initally developed for the paper [Liu et al. (2015)](https://ui.adsabs.harvard.edu/abs/2015ApJ...804...37L/abstract). It is not mandatory. But it would be very much appreciated if you would cite this paper when using this procedure.  
 
-It was used in another few subsequent peer-reviewed journal publications including [Min et al. (2016)](https://ui.adsabs.harvard.edu/abs/2016ApJ...824...99M/abstract), [Min et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...864..102M/abstract), and [Dong et al. (2022)](https://ui.adsabs.harvard.edu/abs/2022NatAs...6..331D/abstract).
+It was used in another few subsequent peer-reviewed journal publications including [Min et al. (2016)](https://ui.adsabs.harvard.edu/abs/2016ApJ...824...99M/abstract), [Min et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...864..102M/abstract), [Monsch et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...861...77M/abstract), [Dong et al. (2022)](https://ui.adsabs.harvard.edu/abs/2022NatAs...6..331D/abstract), and [Lin et al. (2022)](https://ui.adsabs.harvard.edu/abs/2022A%26A...658A.128L/abstract), etc.
 
 
 
@@ -36,6 +38,11 @@ The more serious issue is that, when the target sources you are imaging have rat
 
 (working in progress)
 
+In terms of combining single-dish, concept of this procedure is not too different from that of [TP2VIS](https://github.com/tp2vis/distribute) or [SDINT](https://casa.nrao.edu/casadocs/casa-6.1.0/global-task-list/task_sdintimaging/about) although the implementations are somewhat different. The performance of our procedure, if used properly, is not worse than the other two to my understanding.
+
+
+This procedure implemented the same concept to the joint image of ALMA and ACA visibilities.
+
 
 
 ## Scripts
@@ -46,7 +53,7 @@ You can simply git clone to obtain the scripts to do the joint imaging. The scri
 ## Requirement
 
 ### Platform
-I have been running the procedure documented below on a x86_64 system. I am using Linux. I have tried the following distributions: Redhat7, Redhat8, Ubuntu 14.04, 16.04, 18.04, 20.04, and Cent OS 7, 8. They all work OK.  
+I have been running the procedure documented below on a x86_64 system. I am using Linux. I have tried the following distributions: Redhat7, Redhat8, Ubuntu 14.04, 16.04, 18.04, 20.04, and Cent OS 7, 8. They all work OK. It might work for pre-2019 Mac as long as you can successfully install the Miriad software package (binary release is OK). I have not tried it to later Mac. If it works for your Mac, I would be happy to know.
 
 ### Software packages
 The implementation of this procedure is presently based on the [MIRIAD software package](https://www.astro.umd.edu/~teuben/miriad/). I am using a binary distribution that is optimized for the [CARMA](https://en.wikipedia.org/wiki/Combined_Array_for_Research_in_Millimeter-wave_Astronomy). 
@@ -61,4 +68,10 @@ The reason for me to base on MIRIAD is that I am more famiilar with manipulating
 
 
 ## Contact
-You are more than welcome to drop me an E-Mail if encourtering any problems. There could be still some bugs in the script that I did not notice. Your comment would be very much appreciated.
+
+These scripts have not experienced many other users. I was using them for my own works, or for those people who would not be too interested in such details (e.g., theoreticians or very senior people). Since nowadays, not many people are using Miriad, I was not motivated to oranize, document, and release this procedure, until I heard many good comments about this script from my colleague, Siyi Feng, when she was combining here ALMA and ACA data. Then I started to think it might be useful to open it to other users.
+
+There could be still some bugs in the script that we did not notice. 
+Your comment would be very much appreciated.
+
+You are more than welcome to drop me an E-Mail if encourtering any problems. 
