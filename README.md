@@ -1,9 +1,9 @@
-# Fast and High Fidelity ALMA+ACA Joint Imaging
+# Fast and High Fidelity ALMA+ACA or ALMA+ACA+TP Joint Imaging
 
 ## Features
 
-- It runs faster than CASA `tclean` and does not require masking (i.e., clean-boxing).  
-- It is slower than CASA `feather` but is more accurate.
+- It runs faster (x10~x100) than CASA `tclean` and does not require masking (i.e., clean-boxing).
+- It is slower than CASA `feather` but the fidelity is much better.
 
 
 
@@ -14,7 +14,6 @@ This is the ALMA+ACA+TP mosaic of CO 2-1 observations towards Lupus MM3.
 ![Lupus MM3](/figures/channel_Lupusmm3_3.png)
 ![Lupus MM3](/figures/channel_Lupusmm3_4.png)
 ![Lupus MM3](/figures/channel_Lupusmm3_5.png)
-![Lupus MM3](/figures/channel_Lupusmm3_6.png)
 
 
 
@@ -40,7 +39,7 @@ The more serious issue is that, when the target sources you are imaging have rat
 
 
 ## Scripts
-You can simply git clone to obtain the scripts to do the joint imaging. The scripts `combine_single.sh` and `combine_mosaic.sh` are the scripts for combining single-pointing observations and mosaic observations, respectively.
+You can simply git clone to obtain the scripts to do the joint imaging. The scripts `combine_single.sh` and `combine_mosaic.sh` are the scripts for combining single-pointing (ALMA+ACA) observations and mosaic (ALMA+ACA+TP) observations, respectively.
 
 
 
