@@ -40,7 +40,7 @@ The more serious issue is that, when the target sources you are imaging have rat
 
 
 ## Scripts
-You can simply git clone to obtain the scripts to do the joint imaging. The scripts <p style="color:blue">combine_single.sh</p> and <p style="color:blue">combine_mosaic.sh</p> are the scripts for combining single-pointing observations and mosaic observations, respectively.
+You can simply git clone to obtain the scripts to do the joint imaging. The scripts `combine_single.sh` and `combine_mosaic.sh` are the scripts for combining single-pointing observations and mosaic observations, respectively.
 
 
 
