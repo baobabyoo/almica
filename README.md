@@ -9,7 +9,7 @@
 
 ## Examples of images created with this procedure
 
-This is the ALMA+ACA mosaic of CO 2-1 observations towards Lupus MM3.
+This is the ALMA+ACA+TP mosaic of CO 2-1 observations towards Lupus MM3.
 
 ![Lupus MM3](/figures/channel_Lupusmm3_3.png)
 ![Lupus MM3](/figures/channel_Lupusmm3_4.png)
