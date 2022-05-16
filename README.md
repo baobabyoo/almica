@@ -1,8 +1,8 @@
-# Fast and High Fidelity ALMA+ACA or ALMA+ACA+TP Joint Imaging
+# ALMICA: Fast and High Fidelity ALMA+ACA or ALMA+ACA+TP Joint Imaging
 
 ## Features
 
-- It runs faster (x10~x100) than CASA `tclean` and does not require masking (i.e., clean-boxing).
+- On laptop, this runs faster (x10~x100) than CASA `tclean` and does not require masking (i.e., clean-boxing).
 - It is slower than CASA `feather` but the fidelity is much better.
 
 Jointly imaging ALMA+ACA (no TP) may be considered the most useful part of this procedure as there are many other procedures for combining TP after we obtain the ALMA+ACA map, for example, the Python based [J-comb code](https://github.com/SihanJiao/J-comb).
@@ -11,7 +11,7 @@ Jointly imaging ALMA+ACA (no TP) may be considered the most useful part of this 
 
 ## Examples of images created with this procedure
 
-This is the ALMA+ACA+TP mosaic of CO 2-1 observations towards Lupus MM3 (presenting three consecutive velocity channels below).
+This is the ALMA+ACA+TP mosaic of CO 2-1 observations towards Lupus MM3 (presenting three consecutive velocity channels below; more channels can be found in the /figures folder).
 
 ![Lupus MM3](/figures/channel_Lupusmm3_3.png)
 ![Lupus MM3](/figures/channel_Lupusmm3_4.png)
@@ -22,7 +22,11 @@ This is the ALMA+ACA+TP mosaic of CO 2-1 observations towards Lupus MM3 (present
 ## Acknowledgement (and History)
 This procedure was initally developed for the paper [Liu et al. (2015)](https://ui.adsabs.harvard.edu/abs/2015ApJ...804...37L/abstract). It is not mandatory. But it would be very much appreciated if you would cite this paper when using this procedure.  
 
-It was used in another few subsequent peer-reviewed journal publications including [Min et al. (2016)](https://ui.adsabs.harvard.edu/abs/2016ApJ...824...99M/abstract), [Min et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...864..102M/abstract), [Monsch et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...861...77M/abstract), [Dong et al. (2022)](https://ui.adsabs.harvard.edu/abs/2022NatAs...6..331D/abstract), and [Lin et al. (2022)](https://ui.adsabs.harvard.edu/abs/2022A%26A...658A.128L/abstract), etc.
+It was used in another few subsequent peer-reviewed journal publications including 
+- [Min et al. (2016)](https://ui.adsabs.harvard.edu/abs/2016ApJ...824...99M/abstract), [Min et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...864..102M/abstract), 
+- [Monsch et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...861...77M/abstract), 
+- [Dong et al. (2022)](https://ui.adsabs.harvard.edu/abs/2022NatAs...6..331D/abstract), 
+- [Lin et al. (2022)](https://ui.adsabs.harvard.edu/abs/2022A%26A...658A.128L/abstract), etc.
 
 
 
