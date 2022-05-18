@@ -7,6 +7,7 @@ The name `ALMICA` is to make it sounds like a fusion of **ALM**A, **I**maging, a
 
 - On laptop, this runs faster (x10~x100) than CASA `tclean` and does not require masking (i.e., clean-boxing).
 - It is slower than CASA `feather` but the fidelity is much better.
+- This is not intended to be a black box. The steps are transparent.
 
 Jointly imaging ALMA+ACA (no TP) may be considered the most useful part of this procedure as there are many other procedures for combining TP after we obtain the ALMA+ACA map, for example, the Python based [J-comb code](https://github.com/SihanJiao/J-comb).
 
@@ -33,9 +34,10 @@ This procedure was used in another few subsequent peer-reviewed journal publicat
 - [Lin et al. (2022)](https://ui.adsabs.harvard.edu/abs/2022A%26A...658A.128L/abstract)
 - [Monsch et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...861...77M/abstract)
 - [Min et al. (2016)](https://ui.adsabs.harvard.edu/abs/2016ApJ...824...99M/abstract) and [Min et al. (2018)](https://ui.adsabs.harvard.edu/abs/2018ApJ...864..102M/abstract)
+- [Liu et al. (2013)](https://ui.adsabs.harvard.edu/abs/2013ApJ...770...44L/abstract)
 
 which can also demonstrate the performance.
-
+The last one was perhaps the first mega-mosaic observations (e.g., with 150+ pointings in a night) of the Submillimeter Array, which demonstrated the fisrt interferometric 0.87 mm dust continuum image of the Galactic circumnuclear disk on ~2 pc scales.
 
 
 ## Acknowledgement (and History)
@@ -113,7 +115,11 @@ Installing [ds9](https://sites.google.com/cfa.harvard.edu/saoimageds9), [CASA](h
 
 These scripts have not experienced many other users. I was using them for my own works, or for those people who would not be too interested in such details (e.g., theoreticians or very senior people). Since nowadays, not many people are using Miriad, I was not motivated to oranize, document, and release this procedure, until I heard many good comments about this script from my colleague, Siyi Feng, when she was combining here ALMA and ACA data. Then I started to think it might be useful to open it to other users.
 
+I appreciate the comments from Yuxin Lin (MPE) and Siyi Feng (XMU).
+
 There could be still some bugs in the script that we did not notice. 
 Your comment would be very much appreciated.
 
-You are more than welcome to drop me an E-Mail if encourtering any problems. If you are an observe and if you feel confused about the procedure, we can also schedule a Google Meet con if that helps. If you do not want to get into these mess (e.g., if you are a theoretician for most of the time), we welcome collaboration.
+You are more than welcome to drop me an E-Mail if encourtering any problems. If you are an observe and if you feel confused about the procedure, we can also schedule a Google Meet con if that helps. If you do not want to get into these mess (e.g., if you are a theoretician for most of the time or you would like your student to focus on other aspects of data analyses), we welcome collaboration.
+
+You are also welcome to let me know if there is anything unclear in this README page. I am happy to take your comment and revise.
