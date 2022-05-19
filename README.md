@@ -21,6 +21,13 @@ Jointly imaging ALMA+ACA (no TP) may be considered the most useful part of this 
 4. Edit the parameters in the `Parameters` section in this script.
 5. Run it.
 
+*Before running this script, it is recommended that you rename your FITS visibilities as XXX_1.fits, XXX_2.fits, XXX_3.fits, etc, such that you can use iterators to loop through all files.*
+
+*This procedure does not support multi-processor (since Miriad does not support it). If you only have one spectral line to image, normally running it with a single modern processor would be more than adequate for most of the typical ALMA projects (LPs are different stories).* 
+
+*If you have many spectral lines and many processors, you can split the lines into separated files, replicate the scripts for individual lines, and run them separately. This is what I am always doing. For high-mass star-forming regions, this is in fact not quite avoidable since you may need to try different Briggs Robust parameters, tapering, or uv distance range for different lines. Imaging the whole spw in one go does not always get us the best achievable image quality for all lines. I shared another Python/CASA script that may make it easier for you to split a large number of lines for a large number of ALMA MS files ( [Check this link](https://github.com/baobabyoo/usefulCASAscripts/blob/zcma_2017Nov/linesplit.py), and please use the zcma_2017Nov branch, which was the lastest edit and was used for the publication [Dong et al.  2022](https://ui.adsabs.harvard.edu/abs/2022NatAs...6..331D/abstract)). The syntax of ALMA data might have changed since then. If you encounter any problem or if you have any suggestion, please let me know.* 
+
+
 
 
 ## Examples of images created with this procedure
@@ -57,7 +64,7 @@ This procedure was initally developed for the paper [Liu et al. (2015)](https://
 
 **Jointly Imaging ALMA and ACA**
 
-*The concept is to taper the primary beam of the ACA data before jointly imaging with the ALMA data.* In my implementation based on the [MIRIAD software package](https://www.astro.umd.edu/~teuben/miriad/), I followed a *sound-stupid but it works* procedure: 
+*The concept is to taper the primary beam of the ACA data before jointly imaging with the ALMA data.* In my implementation based on the [MIRIAD software package](https://www.astro.umd.edu/~teuben/miriad/), I followed a *sound-stupid but it works* procedure (`combine_single.sh`): 
 
 1. **Imaging ACA data alone** to creat the clean model image (e.g., the `.model` images produced by the released .sh scripts). They are the clean components (i.e., can be delta functions to represent the intensity distribution in an approximated way). This step is very fast since ACA data have small filesizes. You do not need to use small pixel sizes in this ACA imaging.
 2. **Primary beam (7m dishes) correcting** the `.model` images.
@@ -69,16 +76,31 @@ Then it is all set.
 
 Mosaic and single-pointing observations are not too different to this procedure. The cases of single-pionting observations and mosaic have different BASH scripts, since MIRIAD have different tasks for the former (`clean`) and later (`mossdi`), and there needs loops to process individual pointings in a mosaic observations. Ideally, the best performance may be achieved if your ACA observations have exactly the same pointing centers as the ALMA observations (i.e., super-sampling in the ACA observations). This is presently not the standard mode for the short-spacing observations. We recommend to do it this way since it does not increase too much of the overhead but will make many things simpler (i.e., we can then avoid using the MIRIAD `uvrandom` task).  
 
-The funky features mentioned before is suppressed in Step 3. I have been beliving that this is the right thing to do, although the present implementation is not necessary the best way of doing it. In my experiences, this procedure works for the typical ALMA+ACA applications unless you are pursuing ultra-high dynamic range imaging (e.g., >1e4) which is also limited by other problems (e.g., phase errors, amplitude errors, polarization, etc). You may miss some faint and spatially extended features (e.g., those 1.5-sigma structures in the ACA image which are very difficult to clean). This is not a problem in most of the applications since they will be immersed in thermal noise anyway after you jointly image with the ALMA data.
+The funky features mentioned before is suppressed in Step 3. I have been beliving that this is the right thing to do, although the present implementation is not necessary the best way of doing it. 
+
+In my experiences, this procedure works for the typical ALMA+ACA applications unless you are pursuing ultra-high dynamic range imaging (e.g., >1e4) which is also limited by other problems (e.g., phase errors, amplitude errors, polarization, etc). You may miss some faint and spatially extended features (e.g., those 1.5-sigma structures in the ACA image which are very difficult to clean). This is not a problem in most of the applications since they will be immersed in thermal noise anyway after you jointly image with the ALMA data.
 
 Some other imperfectness is created when we produce the ACA-alone images and then re-convert the clean model back to visibility. This is especially true when you are performing mosaic observations in the standard ALMA Cycle 0-9 way using the `uvrandom` task. Nevertheless, when there are artifacts in the ACA images, it means that the sky intensity was incompletely sampled. This problem is quite fundamental. Even in the case that we can do tapering in of the ACA primary beam in the visibility, it does not necessarily mean we can produce a joint ALMA+ACA image that is dramatically better than what is produced by our present procedure. 
 
 A more ideal way would be directly tapering the observed ACA visibilty in the uv (Fourier) domain, which requires the imaging routine to support this operation. In addition, this ideal approach is only feasible when your ACA and ALMA observations have exactly the same pointing centers or even using denser ACA samplings (e.g., OTF mosaic). To my knowledge, until 2022, such a ALMA+ACA mosaic strategy has been implemented only in one of my own mosaic observations. Without over sampling ACA mosaic, the primary beam tapered ACA mosaic will not cover the entire mosaic area (i.e., it will be patchy). So for this moment, such a ideal way is only practical for jointly imaging single-pointing ALMA+ACA observations. 
 
-The reason for me to base on MIRIAD is that I am more familiar with manipulating headers in this environment, and I am lucky to be able get quick responses from the developers of MIRIAD when I need to (I have been working with the Submillimetary Array community who use MIRIAD as the standard imaging software package). When we try to further combine the single-dish observations from other observatories, manipulating headers can be very frustrating until you have done that multiple times. The second reason is that when I was developing this script, both Python and CASA have been evolving rapidly while MIRIAD has been stablized. The third reason was that CASA `tclean` was implemented with a primary beam mask which I sometimes did not want (when testing some procedures). If I get a suitable Master's student, I may try to make this procedure fully Pythonic. We are a very small and isolated group in a developing country. In terms of budget scale, this is 30~40k USD/yr for 3~4 people (including me) for most of the time (for students' stipend, page charges, hardware purchases, international travel, MIS expenses, etc). *For us to acquire grant to support students and continue with the code development and release, your citation would be very helpful and would be deeply appreciated.*
+The reason for me to base on MIRIAD is that I am more familiar with manipulating headers in this environment, and I am lucky to be able get quick responses from the developers of MIRIAD when I need to (I have been working with the Submillimetary Array community who use MIRIAD as the standard imaging software package). When we try to further combine the single-dish observations from other observatories, manipulating headers can be very frustrating until you have done that multiple times. The second reason is that when I was developing this script, both Python and CASA have been evolving rapidly while MIRIAD has been stablized. The third reason was that CASA `tclean` was implemented with a primary beam mask which I sometimes did not want (when testing some procedures). If I get a suitable Master's student, I may try to make this procedure fully Pythonic. We are a very small and isolated group in a developing country. In terms of budget scale, this is about 30 to 40k USD/yr for 3 to 4 people (including me) for most of the time (for students' stipend, page charges, hardware purchases, international travel, MIS expenses, etc). *For us to acquire grant to support students and continue with the code development and release, your citation would be very helpful and would be deeply appreciated.*
 
 In terms of combining single-dish, concept of this procedure is not too different from that of [TP2VIS](https://github.com/tp2vis/distribute) or [SDINT](https://casa.nrao.edu/casadocs/casa-6.1.0/global-task-list/task_sdintimaging/about) although the implementations are somewhat different. The performance of our procedure, if used properly, is not worse than the other two to my understanding. In the MIRIAD implementation, I use the `immerge` task to ensure that the overall flux density is conserved (e.g., most of the deconvolution procedures do not conserve flux). In the future Pythonic procedure, we will likely use  [J-comb code](https://github.com/SihanJiao/J-comb) which is more precise.
 
+
+**Jointly Imaging ALMA, ACA, and TP**
+
+The steps are (`combine_mosaic.sh`):
+
+1. **Deconvolve the TP image (either using clean or MEM)**  
+2. **Convert the deconvolved TP image to visibilities (at the pointings of ACA mosaic)**  
+3. **Jointly image the ACA data and TP visibility model**  
+4. **Convert the ACA+TP clean-model to visibilities (at the pointings of ALMA 12m-dish mosaic)**
+5. **Jointly image the ALMA data and the ACA+TP visibility model**
+6. **Finally, linearly combine the TP image again with the cleam-image produced in Step 5**
+
+*In this procedure, the funky features are suppressed in the same way as the ALMA+ACA imaging introduced above.* In my experiences, with or without suppressing the funky features before cleaning, makes a dramatic difference.
 
 
 ## Release
