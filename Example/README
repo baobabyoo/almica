@@ -1,0 +1,17 @@
+After sourcing Miriad, you can cd to the /Example/combine directory 
+and then execute
+> combine.sh
+
+I have converted the calibrated ALMA data to standard FITS format.
+Otherwise, the ALMA MS files are too large to be hosted by github.
+Those FITS data (including ALMA, ACA, and TP data) are in the directory
+/Example/data/fits
+
+Nevertheless, the two scripts
+exportfits_Lupus.py
+exportfits_TP.py
+allow you to see how the ALMA MS data were exported.
+
+The calibrated data were obtained from the workshop
+https://www.alma-allegro.nl/data-combination/
+that I was a co-organizer.
