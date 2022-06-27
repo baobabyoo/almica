@@ -109,8 +109,7 @@ This is the first release made on 2022-May-20.
 
 You can simply git clone to obtain the scripts to do the joint imaging. The scripts `combine_single.sh` and `combine_mosaic.sh` are the scripts for combining single-pointing (ALMA+ACA) observations and mosaic (ALMA+ACA+TP) observations, respectively.
 
-I am presently locking myself at home due to covid-19 outbreak. When I can get back to my office, I will upload some data such that you can run as an example. Basically that is the data to reproduce the example images shown above, which were used in the image combination workshop [Improving Image Fidelity on Astronomical Data: Radio Interferometer and Single-Dish Data Combination](https://www.alma-allegro.nl/data-combination/). This procedure did not join the profiling since I did not have travel budget.
-
+I have included an example in the Example folder. Basically that is the data to reproduce the example images shown above, which were used in the image combination workshop [Improving Image Fidelity on Astronomical Data: Radio Interferometer and Single-Dish Data Combination](https://www.alma-allegro.nl/data-combination/). This procedure did not join the profiling since I did not have travel budget.
 
 
 ## Requirement
